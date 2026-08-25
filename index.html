@@ -1,944 +1,467 @@
 <!DOCTYPE HTML>
-<html lang="en">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Alex Morgan | Personal Homepage Template</title>
-  <meta name="author" content="Alex Morgan">
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>闫醒阳 | 华北理工大学公共卫生学院</title>
+  <meta name="author" content="闫醒阳 Xingyang Yan">
+  <meta name="description" content="闫醒阳，博士，华北理工大学公共卫生学院讲师、硕士生导师。研究方向：微流控芯片的生物医学与公共卫生领域应用。">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-  <link rel="icon" type="image/svg+xml" href="images/template/avatar.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%231a365d'/%3E%3Ctext x='50' y='66' font-size='44' text-anchor='middle' fill='white' font-family='sans-serif'%3E闫%3C/text%3E%3C/svg%3E">
   <style>
-    body, * {
-      cursor: url('images/icon/cursor.png'), auto;
+    :root {
+      --primary: #1a365d;
+      --primary-light: #2c5282;
+      --accent: #b7791f;
+      --accent-soft: #fdf6e8;
+      --text: #2d3748;
+      --text-light: #5a6b7b;
+      --border: #e2e8f0;
+      --bg: #f7fafc;
+      --card-bg: #ffffff;
+      --radius: 10px;
     }
-    a, a * {
-      cursor: url('images/icon/cursor-pointer.png'), pointer !important;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    a { color: var(--primary-light); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page-section {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* ============ About ============ */
+    #about { padding-top: 48px; padding-bottom: 8px; }
+    .about-grid { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
+    .about-main { flex: 1 1 480px; min-width: 280px; }
+    .about-avatar { flex: 0 0 220px; text-align: center; }
+    .about-avatar svg { width: 200px; height: 200px; border-radius: 12px; box-shadow: 0 6px 20px rgba(26,54,93,0.15); }
+    .about-name { font-size: 26px; font-weight: 700; color: var(--primary); text-align: center; margin-bottom: 6px; }
+    .about-name small { font-weight: 400; font-size: 16px; color: var(--text-light); margin-left: 8px; }
+    .about-title { text-align: center; color: var(--text-light); font-size: 14px; margin-bottom: 16px; }
+    .about-bio { margin: 10px 0; color: var(--text); }
+    .about-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, #ccc 20%, #ccc 80%, transparent); margin: 14px 0; }
+    .contact-links { margin-top: 8px; }
+    .contact-line { display: inline-block; margin-right: 16px; margin-bottom: 6px; }
+    .contact-line a { display: inline-flex; align-items: center; gap: 5px; color: var(--text); font-size: 13.5px; }
+    .contact-line a:hover { color: var(--primary-light); text-decoration: none; }
+    .contact-line svg { width: 15px; height: 15px; flex-shrink: 0; }
+    /* ============ Section heading ============ */
+    .section-heading { font-size: 21px; font-weight: 700; color: var(--primary); border-left: 4px solid var(--accent); padding-left: 12px; margin: 34px 0 16px; }
+    /* ============ News ============ */
+    .news-list { list-style: none; }
+    .news-list li { display: flex; align-items: baseline; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--border); }
+    .news-date { flex-shrink: 0; background: var(--accent-soft); color: var(--accent); font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 20px; white-space: nowrap; }
+    /* ============ Publications ============ */
+    .tag-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 18px; }
+    .tag-btn { padding: 5px 16px; border-radius: 20px; border: 1px solid rgba(26, 54, 93, 0.18); background: #fff; color: var(--primary-light); font-size: 13px; cursor: pointer; transition: all 0.2s; }
+    .tag-btn:hover { border-color: rgba(26,54,93,0.4); background: var(--accent-soft); }
+    .tag-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .tag-count { display: inline-block; background: rgba(0,0,0,0.1); font-size: 11px; font-weight: 700; width: 17px; height: 17px; line-height: 17px; border-radius: 50%; text-align: center; margin-left: 5px; }
+    .tag-btn.active .tag-count { background: rgba(255,255,255,0.25); color: #fff; }
+    .pub-card { display: flex; gap: 18px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; transition: box-shadow 0.2s; }
+    .pub-card:hover { box-shadow: 0 4px 16px rgba(26,54,93,0.08); }
+    .pub-card.highlight { background: #fffdf0; border-color: #f0e6c8; }
+    .pub-card .pub-title { font-weight: 700; font-size: 15px; color: var(--primary); }
+    .pub-card .pub-title a { color: var(--primary); }
+    .pub-card .pub-authors { font-size: 13.5px; color: var(--text-light); margin-top: 3px; }
+    .pub-card .pub-authors .me { font-weight: 700; color: var(--primary); }
+    .pub-card .pub-meta { font-size: 13px; margin-top: 4px; }
+    .pub-card .pub-meta .venue { font-weight: 600; color: var(--accent); }
+    .pub-card .pub-meta .badge { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 4px; margin-left: 6px; }
+    .pub-card .pub-links { margin-top: 6px; font-size: 13px; }
+    .pub-card .pub-links a { margin-right: 10px; }
+    .pub-note { color: var(--text-light); font-size: 13px; margin-bottom: 8px; }
+    /* ============ Experience / Research ============ */
+    .exp-item { display: flex; gap: 18px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 12px; }
+    .exp-year { flex-shrink: 0; width: 118px; font-size: 13px; font-weight: 700; color: var(--accent); padding-top: 2px; }
+    .exp-body .exp-org { font-weight: 700; color: var(--primary); font-size: 15px; }
+    .exp-body .exp-role { font-size: 13.5px; color: var(--text-light); }
+    .exp-body ul { margin: 6px 0 0 18px; font-size: 14px; }
+    .exp-body ul li { margin-bottom: 4px; }
+    /* ============ Skills ============ */
+    .skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .skill-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; }
+    .skill-card h4 { color: var(--primary); font-size: 14.5px; margin-bottom: 6px; }
+    .skill-card p { font-size: 13.5px; color: var(--text); }
+    @media (max-width: 640px) { .skill-grid { grid-template-columns: 1fr; } }
+    /* ============ Service / Awards ============ */
+    .plain-list { list-style: none; }
+    .plain-list li { padding: 7px 0; border-bottom: 1px dashed var(--border); font-size: 14px; }
+    .plain-list li::before { content: "▪ "; color: var(--accent); }
+    /* ============ Footer ============ */
+    .site-footer { margin-top: 56px; background: linear-gradient(180deg, #16304f 0%, #0f2440 100%); color: #cbd5e0; padding: 48px 24px 36px; text-align: center; position: relative; overflow: hidden; }
+    .site-footer .foot-hill { position: absolute; bottom: 0; left: 0; right: 0; pointer-events: none; opacity: 0.18; }
+    .site-footer h2 { color: #fff; font-size: 22px; margin-bottom: 6px; }
+    .site-footer .foot-sub { font-size: 14px; margin-bottom: 20px; }
+    .foot-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; padding: 9px 22px; border-radius: 24px; font-size: 14px; font-weight: 600; }
+    .foot-cta:hover { background: #9a651c; text-decoration: none; }
+    .foot-cta svg { width: 16px; height: 16px; }
+    .foot-note { font-size: 12.5px; margin-top: 26px; color: #8aa0b8; }
+    .foot-note .divider { margin: 0 8px; color: #5a7188; }
+    /* ============ Back to top / Toast ============ */
+    #backToTop { position: fixed; right: 26px; bottom: 30px; width: 42px; height: 42px; border-radius: 50%; border: none; background: var(--primary); color: #fff; cursor: pointer; box-shadow: 0 4px 14px rgba(26,54,93,0.3); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.25s; z-index: 999; }
+    #backToTop.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    #backToTop svg { width: 20px; height: 20px; }
+    .toast-message { position: fixed; top: 20px; left: 50%; transform: translate(-50%, -130%); background: rgba(26, 54, 93, 0.9); color: #fff; padding: 8px 18px; border-radius: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.18); z-index: 2000; opacity: 0; transition: all 0.3s ease; pointer-events: none; font-size: 14px; }
+    .toast-message.show { opacity: 1; transform: translate(-50%, 0); }
+    @media (max-width: 700px) {
+      .about-grid { flex-direction: column-reverse; align-items: center; }
+      .about-avatar { flex: 0 0 auto; }
+      .exp-item { flex-direction: column; gap: 6px; }
+      .exp-year { width: auto; }
+      .pub-card { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <table id="about" class="page-section" style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:68%;vertical-align:middle">
-              <p style="text-align:center">
-                <name>Alex Morgan &nbsp | &nbsp 艾利克斯<span id="astronaut-btn" style="cursor: pointer; margin-left: 5px;" title="Copy bio">🧑‍🚀</span></name>
-              </p>
-			<p>
-			  I am a fictional Ph.D. candidate at
-			  <img 
-			    src="images/template/institute.svg"
-			    alt="Northbridge Institute logo"
-			    style="height:1em; vertical-align:middle; margin-right:4px;"
-			  >
-			  <a href="#">Northbridge Institute of Technology</a>, supervised by Prof.
-			  <a href="#">Mira Chen</a>. My research explores human-centered AI, reliable multimodal systems, and accessible tools for scientific discovery.
-			</p>
-			<p>
-				I like collaborating with
-				<a href="https://github.com/anthropics/claude-code">
-				  <img src="images/icon/claudecode.png" alt="Claude Code icon" style="height:16px; vertical-align:middle;">
-				  Claude Code
-				</a>
-				and
-				<a href="https://github.com/openai/codex">
-				  <img src="images/icon/codex.png" alt="Codex icon" style="height:16px; vertical-align:middle;">
-				  CodeX
-				</a>
-				. They are my good partners! I enjoy turning ambitious ideas into simple, useful systems and sharing what I learn along the way.
-			</p>
-			<div style="width: 100%; height: 1px; background: linear-gradient(to right, transparent, #ccc 20%, #ccc 80%, transparent); margin: 10px 0;"></div>
-
-              <p class="contact-links">
-                <span class="contact-line">
-                <a href="mailto:alex.morgan@example.com" id="email-copy" class="email-link" title="Click to copy email">
-                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                    <path d="m3 7 9 6 9-6"></path>
-                  </svg>
-                  Email: <span class="contact-sub">alex.morgan@example.com</span>
-                </a> &nbsp/&nbsp
-                <a href="#" title="Replace with your CV">
-                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path>
-                    <path d="M14 2v6h6"></path>
-                    <path d="M8 13h8"></path>
-                    <path d="M8 17h5"></path>
-                  </svg>
-                  CV
-                </a> &nbsp/&nbsp
-				<a href="#" title="Replace with your social profile">
-                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.9 2.5h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-7-6.1 7H2l7.9-9L1.6 2.5h7l4.8 6.4 5.5-6.4Zm-1.2 18h1.9L7.6 4.4h-2l12.1 16.1Z"></path>
-                  </svg>
-                  Twitter
-                </a> &nbsp/&nbsp
-				<a href="#" title="Replace with your social profile">
-                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="4" y="4" width="16" height="16" rx="4"></rect>
-                    <path d="M8 9h8"></path>
-                    <path d="M8 13h8"></path>
-                    <path d="M8 17h5"></path>
-                  </svg>
-                  RedNote
-                </a>
-                </span>
-                <span class="contact-line">
-                <a href="#" title="Replace with your Scholar profile">
-                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3 1.5 9 12 15 22.5 9 12 3Z"></path>
-                    <path d="M5 12.1v4.2c0 1.2 3.1 3.2 7 3.2s7-2 7-3.2v-4.2l-7 4-7-4Z"></path>
-                  </svg>
-                  Google Scholar
-                </a>
-                &nbsp/&nbsp
-                <a href="#" title="Replace with your GitHub profile">
-                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 .5C5.7.5.6 5.6.6 11.9c0 5 3.3 9.3 7.9 10.8.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 .1.5 2.7 3.2 1.9.1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.1 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.5.2 2.8.1 3.1.8.9 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.8C23.4 5.6 18.3.5 12 .5Z"></path>
-                  </svg>
-                  Github
-                </a>
-                </span>
-			  </p>
-            </td>
-            <td style="padding:2.5%;width:40%;max-width:40%">
-              <img style="width:85%;max-width:85%;border-radius:8px;" alt="Abstract placeholder portrait for a fictional person" src="images/template/avatar.svg">
-            </td>
-          </tr>
-        </tbody></table>
-
-			<table id="news" class="page-section" style="width:96%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-	          <tr>
-	              <heading>News</heading>
-	            <br>
-	            <td style="padding:0px;width:100%;vertical-align:middle">
-			  <P class="news-first-entry">
-                <li class="news-entry"><span class="news-date-badge">Jun. 2026</span> Our paper on interpretable multimodal agents was accepted by <span class="news-highlight">A fictional AI symposium</span>.
-                </li>
-              </P>
-			  <P>
-                <li class="news-entry"><span class="news-date-badge">Mar. 2026</span> I joined the <span class="news-highlight">Open Science Fellows</span> community.
-                </li>
-              </P>
-              <P>
-                <li class="news-entry"><span class="news-date-badge">Nov. 2025</span> We released a new <span class="news-highlight">educational AI toolkit</span> for public use.
-                </li>
-              </P>
-            </td>
-          </tr>
-        </tbody></table>
-        
-		<table id="publications" class="publications-table page-section" style="width:100%;border:0px;border-spacing:0 16px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-          <heading>Publications</heading>
-    <br>
-   <p>† Equal contribution. * Corresponding author. The leading papers are <span style="background-color: #FFFEE0;">highlighted</span>.</p>
-   <p>The entries below are fictional examples. Replace them with your publications and update your <a href="#">Google Scholar</a> link.</p>
-          
-          <!-- Research Interests Tag Filter -->
-          <style>
-            .tag-filter {
-              display: flex;
-              flex-wrap: wrap;
-              gap: 8px;
-              margin: 16px auto 0;
-              justify-content: center;
-            }
-            .tag-btn {
-              padding: 5px 14px;
-              border-radius: 20px;
-              border: 1px solid rgba(17, 17, 17, 0.18);
-              background: rgba(251, 165, 36, 0.06);
-              color: #6e3519;
-              font-size: 13px;
-              cursor: pointer;
-              transition: all 0.2s;
-            }
-            .tag-btn:hover {
-              border-color: rgba(17, 17, 17, 0.36);
-              background: rgba(251, 165, 36, 0.1);
-              color: #6e3519;
-            }
-            .tag-btn.active {
-              background: #ad7020;
-              color: #fff;
-              border-color: rgba(17, 17, 17, 0.62);
-              box-shadow: 0 2px 8px rgba(173, 112, 32, 0.22);
-            }
-            .tag-count {
-              display: inline-block;
-              background: rgba(0,0,0,0.15);
-              color: inherit;
-              font-size: 11px;
-              font-weight: bold;
-              width: 18px;
-              height: 18px;
-              line-height: 18px;
-              border-radius: 50%;
-              text-align: center;
-              margin-left: 5px;
-              vertical-align: middle;
-            }
-            .tag-btn.active .tag-count {
-              background: rgba(255, 255, 255, 0.22);
-              color: #fff;
-            }
-            .tag-btn:not(.active) .tag-count {
-              background: rgba(251, 165, 36, 0.14);
-              color: #6e3519;
-            }
-            .publications-table tr[data-tags] > td {
-              border-top: 1px solid rgba(0, 0, 0, 0.14);
-              border-bottom: 1px solid rgba(0, 0, 0, 0.14);
-              background: #fff;
-            }
-            .publications-table tr[data-tags] > td:first-child {
-              border-left: 1px solid rgba(0, 0, 0, 0.14);
-              border-radius: 8px 0 0 8px;
-            }
-            .publications-table tr[data-tags] > td:last-child {
-              border-right: 1px solid rgba(0, 0, 0, 0.14);
-              border-radius: 0 8px 8px 0;
-            }
-            .publications-table tr[data-tags][style*="lightyellow"] > td {
-              background: lightyellow;
-            }
-
-            /* 自定义复制提示框样式 */
-            .toast-message {
-              position: fixed;
-              top: var(--toast-y, 20px);
-              left: var(--toast-x, 50%);
-              transform: translate(-50%, -120%);
-              background: rgba(255, 255, 255, 0.8);
-              color: #333;
-              padding: 8px 16px;
-              border-radius: 20px;
-              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-              z-index: 2000;
-              opacity: 0;
-              transition: all 0.3s ease;
-              pointer-events: none;
-              border: 1px solid rgba(0,0,0,0.05);
-            }
-            .toast-message.show {
-              opacity: 1;
-              transform: translate(-50%, -135%);
-            }
-          </style>
-          
-          <div class="tag-filter" id="tagFilter">
-            <button class="tag-btn active" data-tag="all">All</button>
-	            <button class="tag-btn" data-tag="multimodal-gen">Generation</button>
-	            <button class="tag-btn" data-tag="mllm">Multimodal</button>
-	            <button class="tag-btn" data-tag="medical">Medical</button>
-	            <button class="tag-btn" data-tag="world-model">World Model</button>
-            <button class="tag-btn" data-tag="benchmark">Benchmark</button>
-          </div>
-
-          <script>
-            // Inject counts into tag buttons (after full DOM is parsed)
-            document.addEventListener('DOMContentLoaded', function() {
-              const rows = document.querySelectorAll('tr[data-tags]');
-              const total = rows.length;
-              document.querySelectorAll('.tag-btn').forEach(function(btn) {
-                const tag = btn.dataset.tag;
-                const count = tag === 'all' ? total : Array.from(rows).filter(r => r.dataset.tags.split(',').includes(tag)).length;
-                btn.insertAdjacentHTML('beforeend', '<span class="tag-count">' + count + '</span>');
-              });
-            });
-
-            // Tag filter
-            document.getElementById('tagFilter').addEventListener('click', function(e) {
-              const btn = e.target.closest('.tag-btn');
-              if (!btn) return;
-              document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
-              btn.classList.add('active');
-              const tag = btn.dataset.tag;
-              document.querySelectorAll('tr[data-tags]').forEach(function(row) {
-                row.style.display = (tag === 'all' || row.dataset.tags.split(',').includes(tag)) ? '' : 'none';
-              });
-            });
-
-            function copyText(text, event) {
-              const showToast = () => {
-                const toast = document.getElementById('toast');
-                if (event) {
-                  const margin = 12;
-                  const x = Math.min(Math.max(event.clientX, margin), window.innerWidth - margin);
-                  const y = Math.min(Math.max(event.clientY, 48), window.innerHeight - margin);
-                  toast.style.setProperty('--toast-x', x + 'px');
-                  toast.style.setProperty('--toast-y', y + 'px');
-                }
-                toast.classList.add('show');
-                setTimeout(() => {
-                  toast.classList.remove('show');
-                }, 2000);
-              };
-
-              navigator.clipboard.writeText(text).then(function() {
-                showToast();
-              }).catch(function(err) {
-                console.error('无法复制: ', err);
-                // 降级方案
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                  document.execCommand('copy');
-                  showToast();
-                } catch (err) {
-                  console.error('降级复制失败: ', err);
-                }
-                document.body.removeChild(textArea);
-              });
-            }
-
-            // 复制简介功能
-            document.getElementById('astronaut-btn').addEventListener('click', function(e) {
-              const text = "Alex Morgan is a fictional Ph.D. candidate at Northbridge Institute of Technology. Their research explores human-centered AI, reliable multimodal systems, and accessible tools for scientific discovery. This profile is sample content for a reusable personal homepage template.";
-              copyText(text, e);
-            });
-
-            document.getElementById('email-copy').addEventListener('click', function(e) {
-              e.preventDefault();
-              copyText('alex.morgan@example.com', e);
-            });
-            
-          </script>
-
-	          <tr data-tags="medical">
-	            <td style="padding:20px;width:30%;vertical-align:middle">
-	              <div class="one">
-	                <div class="two" id="rarelens_image">
-	                  <br>
-	                  <img src="images/paper/rarelens.png" width="190" alt="RareLens clinical workflow">
-	                </div>
-	                <br>
-	                <img src="images/paper/rarelens.png" width="190" alt="RareLens clinical workflow">
-	                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/geteff1/RareLens?style=flat-square&color=yellow&label=stars&logo=GitHub">
-	              </div>
-	              <script type="text/javascript">
-	                function rarelens_start() {
-	                  document.getElementById('rarelens_image').style.opacity = "1";
-	                }
-	                function rarelens_stop() {
-	                  document.getElementById('rarelens_image').style.opacity = "0";
-	                }
-	                rarelens_stop()
-	              </script>
-	            </td>
-	            <td style="padding:20px;width:70%;vertical-align:middle">
-					<a href="https://arxiv.org/pdf/2607.23290">
-	              <papertitle>OpenLens: Interpretable Multimodal Assistants for Community Science</papertitle>
-					</a>
-	              <br>
-	              <a:focus>Xi Chen</a:focus>,
-	              <a:focus>Hongru Zhou</a:focus>,
-	              <a:focus>Shiyu Feng</a:focus>,
-	              <a:focus>Hanyu Zhou</a:focus>,
-	              <a:focus>Huahui Yi</a:focus>,
-	              <a:focus><strong>Alex Morgan</strong></a:focus>,
-	              <a:focus>Tiancheng He</a:focus>,
-	              <a:focus>Kun Wang</a:focus>,
-	              <a:focus>Pingping Liu</a:focus>,
-	              <a:focus>Qiankun Li</a:focus>,
-	              <a:focus>Sicheng Lin</a:focus>,
-	              <a:focus>Huiying Ou</a:focus>,
-	              <a:focus>Xiaohong Zheng</a:focus>,
-	              <a:focus>Tianying Zang</a:focus>,
-	              <a:focus>Zhuohang Wu</a:focus>,
-	              <a:focus>Leheng Jiang</a:focus>,
-	              <a:focus>Kexin Cao</a:focus>,
-	              <a:focus>Wenhan Zhang</a:focus>,
-	              <a:focus>ChengYi Li</a:focus>,
-	              <a:focus>Zhiyang Wang</a:focus>,
-	              <a:focus>Songlin Li</a:focus>,
-	              <a:focus>Benyou Wang</a:focus>,
-	              <a:focus>Ningbei Yin</a:focus>,
-	              <a:focus>Shaoting Zhang</a:focus>,
-	              <a:focus>Weili Fu*</a:focus>,
-	              <a:focus>Jian Li*</a:focus>,
-	              <a:focus>Kang Li*</a:focus>
-	              <br>
-	              <a href="http://rarelens.org/">Homepage</a>
-	              /
-	              <a href="https://eval.rarelens.org/">Human Evaluation</a>
-	              /
-	              <a href="https://github.com/geteff1/RareLens">Code</a>
-				  /
-              	  <a href="https://arxiv.org/abs/2607.23290">Paper</a>
-	              <br>
-	              <em><strong>Preprint</strong></em>
-	              <p></p>
-	              <p>
-	              RareLens provides trustworthy, actionable decision support across the full rare-disease care pathway, from early risk screening and diagnosis to treatment, efficacy evaluation, and prognosis.
-	            </td>
-	          </tr>
-
-	          <tr data-tags="benchmark">
-            <td style="padding:20px;width:30%;vertical-align:middle">
-              <div class="one">
-                <div class="two" id='gamecraft_image'>
-                  <br>
-                  <img src='images/paper/gamecraft-bench.png' width="190"></div>
-                  <br>
-                  <img src='images/paper/gamecraft-bench.png' width="190">
-                  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/FreedomIntelligence/gamecraft-bench?style=flat-square&color=yellow&label=stars&logo=GitHub">
-                </div>
-              <script type="text/javascript">
-                function gamecraft_start() {
-                  document.getElementById('gamecraft_image').style.opacity = "1";
-                }
-                function gamecraft_stop() {
-                  document.getElementById('gamecraft_image').style.opacity = "0";
-                }
-                gamecraft_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:70%;vertical-align:middle">
-              <a href="https://arxiv.org/abs/2606.17861">
-                <papertitle>StudioBench: Evaluating Creative Agents in Interactive Environments</papertitle>
-              </a>
-              <br>
-              <a:focus>Tongxu Luo†</a:focus>,
-              <a:focus><strong>Alex Morgan†</strong></a:focus>,
-              <a:focus>Jiaxi Bi†</a:focus>,
-              <a:focus>Chenming Xu†</a:focus>,
-              <a:focus>Zhengyang Tang†</a:focus>,
-              <a:focus>Jianlong Chen</a:focus>,
-              <a:focus>Juhao Liang</a:focus>,
-              <a:focus>Ke Ji</a:focus>,
-              <a:focus>Shuqi Guo</a:focus>,
-              <a:focus>Yuhao Du</a:focus>,
-              <a:focus>Fan Bu</a:focus>,
-              <a:focus>Wenyu Du</a:focus>,
-              <a:focus>Xiaotong Zhang</a:focus>,
-              <a:focus>Kyle Li</a:focus>,
-              <a:focus>Shaobo Wang</a:focus>,
-              <a:focus>Linfeng Zhang</a:focus>,
-              <a:focus>Yuxuan Liu</a:focus>,
-              <a:focus>Xin Lai</a:focus>,
-              <a:focus>Chenxin Li</a:focus>,
-              <a:focus>Yiduo Guo</a:focus>,
-              <a:focus>Zhexin Zhang</a:focus>,
-              <a:focus>Xinyuan Wang</a:focus>,
-              <a:focus>Tianyi Bai</a:focus>,
-              <a:focus>Ziniu Li</a:focus>,
-              <a:focus>Benyou Wang*</a:focus>
-              <br>
-              <a href="https://tongxuluo.github.io/gamecraft-bench-website/">Homepage</a>&nbsp;/&nbsp;<a href="https://github.com/FreedomIntelligence/gamecraft-bench">Code</a>&nbsp;/&nbsp;<a href="https://arxiv.org/abs/2606.17861">Paper</a>
-              <br>
-              <em><strong>Preprint</strong></em>
-              <p></p>
-              <p>
-              GameCraft-Bench evaluates whether agents can build playable games end-to-end in a real game engine.
-              </td>
-          </tr>
-
-		<tr style="background-color: lightyellow;" data-tags="world-model">
-            <td style="padding:20px;width:30%;vertical-align:middle">
-              <div class="one">
-                <div class="two" id='malle_image'>
-                  <br>
-                  <img src='images/paper/microverse.png' width="160"></div>
-                  <br>
-                  <img src='images/paper/microverse.png' width="160">
-                  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/FreedomIntelligence/MicroVerse?style=flat-square&color=yellow&label=stars&logo=GitHub">
-                </div>
-              <script type="text/javascript">
-                function malle_start() {
-                  document.getElementById('malle_image').style.opacity = "1";
-                }
-                function malle_stop() {
-                  document.getElementById('malle_image').style.opacity = "0";
-                }
-                malle_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:70%;vertical-align:middle">
-              <a href="https://arxiv.org/abs/2603.00585">
-                <papertitle>TinyWorlds: Learning Robust Policies in Compact Simulated Environments</papertitle>
-              </a>
-              <br>
-              <a:focus><strong>Alex Morgan†</strong></a:focus>,
-              <a:focus>Minghao Wu†</a:focus>,
-              <a:focus>Hongru Zhou</a:focus>,
-              <a:focus>Zhihan Yu</a:focus>,
-              <a:focus>Zhenyang Cai</a:focus>,
-			  <a:focus>Junying Chen</a:focus>,
-              <a:focus>Benyou Wang*</a:focus>
-              <br>
-              <a href="https://github.com/FreedomIntelligence/MicroVerse">Code</a>
-              /
-              <a href="https://arxiv.org/abs/2603.00585">Paper</a>
-              <br>
-			  <span style="color: red;"><em><strong>ICLR 2026 (Poster)</strong></em></span>
-              <p></p>
-              <p>
-              MicroVerse is a world model designed to faithfully simulate biological processes at the microscale.
-              </td>
-          </tr>
-                    
-	          <tr style="background-color: lightyellow;" data-tags="multimodal-gen,medical">
-            <td style="padding:20px;width:30%;vertical-align:middle">
-              <div class="one">
-                <div class="two" id='malle_image'>
-                  <br>
-                  <img src='images/paper/medgen.png' width="160"></div>
-                  <br>
-                  <img src='images/paper/medgen.png' width="160">
-                  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/FreedomIntelligence/MedGen?style=flat-square&color=yellow&label=stars&logo=GitHub">
-                </div>
-              <script type="text/javascript">
-                function malle_start() {
-                  document.getElementById('malle_image').style.opacity = "1";
-                }
-                function malle_stop() {
-                  document.getElementById('malle_image').style.opacity = "0";
-                }
-                malle_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:70%;vertical-align:middle">
-              <a href="https://arxiv.org/abs/2507.05675">
-                <papertitle>FrameWeaver: Controllable Video Generation with Structured Annotations</papertitle>
-              </a>
-              <br>
-              <a:focus><strong>Alex Morgan†</strong></a:focus>,
-              <a:focus>Junying Chen†</a:focus>,
-              <a:focus>Ke Ji</a:focus>,
-              <a:focus>Zhenyang Cai</a:focus>,
-              <a:focus>Shunian Chen</a:focus>,
-              <a:focus>Benyou Wang*</a:focus>
-              <br>
-              <a href="https://github.com/FreedomIntelligence/MedGen">Code</a>
-              /
-              <a href="https://arxiv.org/abs/2507.05675">Paper</a>
-              /
-              <a href="https://huggingface.co/datasets/FreedomIntelligence/MedVideoCap-55K">Dataset</a>
-			  /
-              <a href="https://huggingface.co/FreedomIntelligence/MedGen-14B">Model</a>
-              <br>
-              <em><strong>Preprint</strong></em>
-              <p></p>
-              <p>
-              MedGen is a medical video generation model, built on the large-scale, caption-rich MedVideoCap-55K dataset.
-              </td>
-          </tr>
-
-	          <tr data-tags="mllm,medical">
-            <td style="padding:20px;width:30%;vertical-align:middle">
-              <div class="one">
-                <div class="two" id='malle_image'>
-                  <br>
-                  <img src='images/paper/med-mat.png' width="190"></div>
-                  <br>
-                  <img src='images/paper/med-mat.png' width="190">
-                  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/FreedomIntelligence/Med-MAT?style=flat-square&color=yellow&label=stars&logo=GitHub">
-                </div>
-              <script type="text/javascript">
-                function malle_start() {
-                  document.getElementById('malle_image').style.opacity = "1";
-                }
-                function malle_stop() {
-                  document.getElementById('malle_image').style.opacity = "0";
-                }
-                malle_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:70%;vertical-align:middle">
-              <a href="https://aclanthology.org/2025.acl-long.639.pdf">
-                <papertitle>Compositional Generalization in Multimodal Scientific Reasoning</papertitle>
-              </a>
-              <br>
-              <a:focus>Zhenyang Cai†</a:focus>,
-              <a:focus>Junying Chen†</a:focus>,
-              <a:focus><strong>Alex Morgan†</strong></a:focus>,
-              <a:focus>Weilong Wang</a:focus>,
-              <a:focus>Yonglin Deng</a:focus>,
-              <a:focus>Dingjie Song</a:focus>,
-              <a:focus>Yize Chen</a:focus>,
-              <a:focus>Zixu Zhang</a:focus>,
-              <a:focus>Benyou Wang*</a:focus>
-              <br>
-              <a href="https://github.com/FreedomIntelligence/Med-MAT">Code</a>
-              /
-              <a href="https://aclanthology.org/2025.acl-long.639.pdf">Paper</a>
-              /
-              <a href="https://huggingface.co/datasets/FreedomIntelligence/Med-MAT">Dataset</a>
-              <br>
-              <span style="color: red;"><em><strong>ACL 2025 (Main)</strong></em></span>
-              <p></p>
-              <p>
-              Multimodal LLMs achieve strong generalization in medical imaging largely through compositional generalization (CG).
-              </td>
-          </tr>
-
-
-	        </tbody></table>
-	        <script>
-	          (function() {
-	            var rows = document.querySelectorAll('.publications-table tr[data-tags]');
-
-	            rows.forEach(function(row, index) {
-	              var title = row.querySelector('papertitle');
-	              if (!title) return;
-
-	              var titleContainer = title.closest('a') || title;
-	              var firstBreak = titleContainer.nextElementSibling;
-	              if (!firstBreak || firstBreak.tagName !== 'BR') return;
-
-	              var lastBreak = firstBreak.nextElementSibling;
-	              while (lastBreak && lastBreak.tagName !== 'BR') {
-	                lastBreak = lastBreak.nextElementSibling;
-	              }
-	              if (!lastBreak) return;
-
-	              var authorNodes = [];
-	              var node = firstBreak.nextSibling;
-	              while (node && node !== lastBreak) {
-	                authorNodes.push(node);
-	                node = node.nextSibling;
-	              }
-
-	              var shell = document.createElement('div');
-	              shell.className = 'publication-authors-shell';
-	              var authors = document.createElement('div');
-	              authors.className = 'publication-authors';
-	              authors.id = 'publication-authors-' + index;
-	              authorNodes.forEach(function(authorNode) {
-	                authors.appendChild(authorNode);
-	              });
-
-	              var toggle = document.createElement('button');
-	              toggle.type = 'button';
-	              toggle.className = 'publication-authors-toggle';
-	              toggle.textContent = '▶';
-	              toggle.setAttribute('aria-controls', authors.id);
-	              toggle.setAttribute('aria-expanded', 'false');
-	              toggle.setAttribute('aria-label', 'Expand author list');
-	              toggle.title = 'Expand author list';
-
-	              shell.appendChild(authors);
-	              shell.appendChild(toggle);
-	              firstBreak.parentNode.insertBefore(shell, firstBreak);
-	              firstBreak.remove();
-	              lastBreak.remove();
-
-	              toggle.addEventListener('click', function() {
-	                var expanded = shell.classList.toggle('expanded');
-	                toggle.textContent = expanded ? '▼' : '▶';
-	                toggle.setAttribute('aria-expanded', String(expanded));
-	                toggle.setAttribute('aria-label', expanded ? 'Collapse author list' : 'Expand author list');
-	                toggle.title = expanded ? 'Collapse author list' : 'Expand author list';
-	              });
-	            });
-
-	            function updateAuthorToggles() {
-	              document.querySelectorAll('.publication-authors-shell').forEach(function(shell) {
-	                var authors = shell.querySelector('.publication-authors');
-	                var toggle = shell.querySelector('.publication-authors-toggle');
-	                var wasExpanded = shell.classList.contains('expanded');
-	                if (wasExpanded) shell.classList.remove('expanded');
-	                var hasOverflow = authors.scrollHeight > authors.clientHeight + 1;
-	                if (wasExpanded) shell.classList.add('expanded');
-	                toggle.hidden = !hasOverflow;
-	              });
-	            }
-
-	            updateAuthorToggles();
-
-	            // The publication cards are template examples, so their visible author lists
-	            // and destinations intentionally do not identify real people or projects.
-	            var sampleAuthors = [
-	              '<strong>Alex Morgan</strong>, Jamie Park, Noor Patel, Mira Chen*',
-	              '<strong>Alex Morgan†</strong>, Sam Rivera†, Taylor Kim, Mira Chen*',
-	              '<strong>Alex Morgan†</strong>, Jordan Lee†, Casey Wu, Mira Chen*',
-	              '<strong>Alex Morgan†</strong>, Robin Shah†, Dana Brooks, Mira Chen*',
-	              'Jamie Park†, <strong>Alex Morgan†</strong>, Noor Patel, Mira Chen*'
-	            ];
-	            document.querySelectorAll('.publication-authors').forEach(function(authors, index) {
-	              authors.innerHTML = sampleAuthors[index] || sampleAuthors[0];
-	            });
-	            rows.forEach(function(row) {
-	              row.querySelectorAll('a').forEach(function(link) {
-	                link.href = '#';
-	                link.removeAttribute('target');
-	              });
-	              row.querySelectorAll('img[src*="shields.io"]').forEach(function(badge) {
-	                badge.remove();
-	              });
-	            });
-
-	            var resizeFrame;
-	            window.addEventListener('resize', function() {
-	              cancelAnimationFrame(resizeFrame);
-	              resizeFrame = requestAnimationFrame(updateAuthorToggles);
-	            }, { passive: true });
-	          })();
-	        </script>
-
-	        <table id="experience" class="page-section" width="100%" align="center" border="0" cellpadding="10"><tbody>
-          <br>
-              <heading>Experience</heading>
-          <br>
-          <tr>
-            <td style="padding-left:20px;padding-right:20px;width:20%;vertical-align:middle"><img src="images/template/institute.svg" width="100" alt="Fictional institute logo"></td>
-            <td width="90%" valign="center">
-              <strong>Northbridge Institute of Technology</strong>
-              <br> 2024.09 - Present
-              <br> <strong>Ph.D. Candidate</strong>
-              <br> Research Advisor: Prof. <a href="#">Mira Chen</a>
-            </td>
-          </tr>  
-        </tbody></table>
-
-        <table id="projects" class="page-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <br>
-              <heading>Projects</heading>
-              <br>
-              <p>🚀 Build in Open. Grow Together.</p>
-              <td style="padding:0px;width:100%;vertical-align:middle">
-                <div id="tagcloud-container">
-                    <p style="text-align:center; color:#999; padding-top: 180px;">Loading projects...</p>
-                </div>
-              </td>
-            </tr>
-        </tbody></table>
-
-        <script>
-            (function() {
-                const container = document.getElementById('tagcloud-container');
-                // Custom project list
-                const myProjects = [
-                    { name: "OpenLens", html_url: "#", stargazers_count: 128 },
-                    { name: "StudioBench", html_url: "#", stargazers_count: 94 },
-                    { name: "TinyWorlds", html_url: "#", stargazers_count: 76 },
-                    { name: "FrameWeaver", html_url: "#", stargazers_count: 63 },
-                    { name: "FieldNotes AI", html_url: "#", stargazers_count: 51 },
-                    { name: "SignalGarden", html_url: "#", stargazers_count: 42 },
-                    { name: "AtlasKit", html_url: "#", stargazers_count: 37 },
-                    { name: "ClearView", html_url: "#", stargazers_count: 29 }
-                ];
-
-                function initTagCloud(projects) {
-                    container.innerHTML = '';
-                    const tags = [];
-                    // Base radius for calculations (height-based to keep it fitting)
-                    const r = Math.min(container.offsetWidth, container.offsetHeight) / 2 * 0.8;
-                    // X-stretch factor for ellipsoid shape
-                    const stretchX = 1.5;
-                    
-                    projects.forEach(p => {
-                        const el = document.createElement('a');
-                        el.href = p.html_url;
-                        el.target = '_blank';
-                        el.className = 'tagcloud-item';
-                        // Show name and stars
-                        el.innerHTML = `${p.name} <span style="font-size:0.8em; opacity:0.8">🌟${p.stargazers_count}</span>`;
-                        el.style.color = '#444';
-                        
-                        container.appendChild(el);
-                        tags.push({ el: el, x: 0, y: 0, z: 0 });
-                    });
-
-                    let angleX = 0.001;
-                    let angleY = 0.001;
-                    let isHovering = false;
-                    const cx = container.offsetWidth / 2;
-                    const cy = container.offsetHeight / 2;
-
-                    // Initial positions - Golden Spiral distribution on sphere
-                    const len = tags.length;
-                    for(let i=0; i<len; i++) {
-                        const phi = Math.acos(-1 + (2 * i + 1) / len);
-                        const theta = Math.sqrt(len * Math.PI) * phi;
-                        tags[i].x = r * Math.cos(theta) * Math.sin(phi);
-                        tags[i].y = r * Math.sin(theta) * Math.sin(phi);
-                        tags[i].z = r * Math.cos(phi);
-                    }
-
-                    let animationId = null;
-                    let isVisible = true;
-
-                    function rotate() {
-                        animationId = null;
-                        if (!isVisible) return;
-                        if (!isHovering) {
-                            const cosX = Math.cos(angleX);
-                            const sinX = Math.sin(angleX);
-                            const cosY = Math.cos(angleY);
-                            const sinY = Math.sin(angleY);
-
-                            tags.forEach(tag => {
-                                // Rotate around X-axis
-                                let y = tag.y * cosX - tag.z * sinX;
-                                let z = tag.z * cosX + tag.y * sinX;
-                                tag.y = y;
-                                tag.z = z;
-
-                                // Rotate around Y-axis
-                                let x = tag.x * cosY - tag.z * sinY;
-                                z = tag.z * cosY + tag.x * sinY;
-                                tag.x = x;
-                                tag.z = z;
-                            });
-                        }
-
-                        tags.forEach(tag => {
-                            const perspective = 2 * r;
-                            const scale = perspective / (perspective - tag.z);
-                            const alpha = (tag.z + r) / (2 * r);
-                            
-                            // Apply stretchX here to create ellipsoid shape visually
-                            tag.el.style.left = (cx + tag.x * stretchX) - tag.el.offsetWidth / 2 + 'px';
-                            tag.el.style.top = (cy + tag.y) - tag.el.offsetHeight / 2 + 'px';
-                            tag.el.style.transform = `scale(${scale})`;
-                            tag.el.style.opacity = Math.max(0.2, alpha);
-                            tag.el.style.zIndex = Math.round(scale * 100);
-                        });
-                        animationId = requestAnimationFrame(rotate);
-                    }
-
-                    function setVisible(visible) {
-                        isVisible = visible;
-                        if (visible && animationId === null) {
-                            animationId = requestAnimationFrame(rotate);
-                        }
-                    }
-                    
-                    container.addEventListener('mouseenter', () => {
-                        isHovering = true;
-                    });
-                    
-                    container.addEventListener('mouseleave', () => {
-                        isHovering = false;
-                    });
-
-                    angleX = 0.002;
-                    angleY = 0.002;
-                    if ('IntersectionObserver' in window) {
-                        const observer = new IntersectionObserver(entries => {
-                            setVisible(entries[0].isIntersecting);
-                        }, { rootMargin: '120px' });
-                        observer.observe(container);
-                    }
-                    setVisible(true);
-                }
-
-                function loadProjects() {
-                    initTagCloud(myProjects);
-                }
-
-                loadProjects();
-            })();
-        </script>
-
-        <table id="service" class="page-section" style="width:90%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <br>
-            <heading>Service and Teaching</heading>
-            <br><br>
-          <td style="padding:0px;width:100%;vertical-align:middle">
-            <p>
-              <li>Volunteer Reviewer: Example Conference on Responsible AI, 2026</li>
-              <li>Teaching Assistant: Introduction to Machine Learning, Spring 2025</li>
-            </p>
-          </td>
-        </tr>
-        </tbody></table>
-
-        <table id="awards" class="page-section" style="width:90%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-                <br>
-                <heading>Awards and Honors</heading>
-                <br>
-                <br>
-              <td style="padding:0px;width:100%;vertical-align:middle">
-                <p>
-                  <li>2025: Northbridge Graduate Research Fellowship</li>
-                </p>
-				<p>
-                  <li>2024: Community Choice Award, Open Tools Showcase</li>
-                </p>
-                <p>
-                  <li>2023: Outstanding Student Mentor, City Code Club</li>
-                </p>
-              </td>
-            </tr>
-        </tbody></table>
-
-      </td>
-    </tr>
-  </table>
-
-  <section class="mountain-footer" aria-label="Footer landscape">
-    <div class="mountain-stage">
-      <picture>
-        <source type="image/webp" srcset="images/experience/background-960.webp 960w, images/experience/background-1440.webp 1440w, images/experience/background-1920.webp 1920w" sizes="100vw">
-        <img class="mountain-img" src="images/experience/background.jpeg" alt="Snowy mountain landscape" loading="lazy" decoding="async" fetchpriority="low"
-             onerror="this.style.display='none'; this.closest('picture').nextElementSibling.style.display='block';">
-      </picture>
-      <div class="mountain-fallback" style="display:none;"></div>
-      <div class="mountain-content">
-        <h2>Keep Exploring</h2>
-        <p class="mountain-sub">Do what matters, even when it's hard.</p>
-        <a href="mailto:alex.morgan@example.com" class="mountain-cta">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          <span>Get in Touch</span>
-        </a>
-        <p class="mountain-footnote">
-          <span>Alex Morgan | Fictional template profile</span>
-          <span class="mountain-updated">Last updated: <!-- LAST_UPDATED_START -->July 30, 2026<!-- LAST_UPDATED_END -->.</span>
-          <span class="mountain-template">
-            This is a reusable personal homepage template. Replace the fictional sample content with your own.
+  <!-- ================= About ================= -->
+  <table id="about" class="page-section"><tbody><tr><td>
+    <div class="about-grid">
+      <div class="about-main">
+        <p class="about-name">闫醒阳 <small>Xingyang Yan</small></p>
+        <p class="about-title">博士 · 讲师 · 硕士研究生导师</p>
+        <p class="about-title">华北理工大学 公共卫生学院</p>
+        <p class="about-bio">
+          闫醒阳，博士，毕业于香港科技大学（化学方向），现为华北理工大学公共卫生学院讲师、硕士研究生导师。
+          主要研究方向为<b>微流控芯片在生物医学与公共卫生领域的应用</b>，包括基于实时图像识别的自动化微流控平台、
+          高通量药物组合筛选肿瘤类器官芯片、食品安全与过敏原分析微流控平台等。
+          已在 <em>Lab on a Chip</em>、<em>Analytical Chemistry</em>、<em>Biomaterials</em> 等期刊发表多篇 SCI 论文，
+          获第 47 届日内瓦国际发明展金奖。
+        </p>
+        <div class="about-divider"></div>
+        <p class="contact-links">
+          <span class="contact-line">
+            <a href="mailto:xyanas@ncst.edu.cn" id="email-copy" title="点击复制邮箱">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="m3 7 9 6 9-6"></path>
+              </svg>
+              Email: xyanas@ncst.edu.cn
+            </a>
+          </span>
+          <span class="contact-line">
+            <a href="tel:18826577722" title="联系电话">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              18826577722
+            </a>
+          </span>
+          <span class="contact-line">
+            <a href="mailto:xyanas@connect.ust.hk" title="个人邮箱">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="m3 7 9 6 9-6"></path>
+              </svg>
+              xyanas@connect.ust.hk
+            </a>
           </span>
         </p>
       </div>
-    </div>
-  </section>
+      <div class="about-avatar">
+  <img src="C:/Users/DELL/Desktop/py/图片1.png" altalt="闫醒阳" style="width:200px; height:200px; border-radius:12px; object-fit:cover; box-shadow:0 6px 20px rgba(26,54,93,0.15);">
+</div>
 
-  <!-- Back to Top Button -->
-  <button id="backToTop" onclick="scrollToTop()" title="Back to top">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1a365d"/>
+              <stop offset="100%" stop-color="#2c5282"/>
+            </linearGradient>
+            <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f6ad55"/>
+              <stop offset="100%" stop-color="#b7791f"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="200" fill="url(#bgGrad)"/>
+          <circle cx="100" cy="100" r="62" fill="rgba(255,255,255,0.08)"/>
+          <!-- 微流控芯片图案 -->
+          <rect x="58" y="58" width="84" height="84" rx="10" fill="none" stroke="url(#chipGrad)" stroke-width="3"/>
+          <rect x="84" y="84" width="32" height="32" rx="4" fill="#fbd38d" opacity="0.85"/>
+          <path d="M58 78 H36 M58 108 H36 M58 122 H36" stroke="#f6ad55" stroke-width="3" stroke-linecap="round"/>
+          <path d="M142 78 H164 M142 108 H164 M142 122 H164" stroke="#f6ad55" stroke-width="3" stroke-linecap="round"/>
+          <text x="100" y="162" text-anchor="middle" font-size="17" fill="#cbd5e0" font-family="sans-serif" letter-spacing="2">MICROFLUIDICS</text>
+        </svg>
+      </div>
+    </div>
+  </td></tr></tbody></table>
+  <!-- ================= News ================= -->
+  <table id="news" class="page-section"><tbody><tr><td>
+    <h2 class="section-heading">最新动态 News</h2>
+    <ul class="news-list">
+      <li><span class="news-date">2024.10</span> 博士毕业于香港科技大学，加入华北理工大学公共卫生学院任教。</li>
+      <li><span class="news-date">2024</span> 以第一作者在 <em>Lab on a Chip</em>（中科院二区 Top）发表肿瘤类器官图像识别分选芯片论文。</li>
+      <li><span class="news-date">2024</span> 以第一作者在 <em>ACS Pharmacology &amp; Translational Science</em> 发表高通量药物组合筛选芯片论文。</li>
+      <li><span class="news-date">2023</span> 以共同第一作者在 <em>Analytical Chemistry</em>（中科院一区 Top）发表 3D 微混合器论文。</li>
+      <li><span class="news-date">现招生</span> 招收公共卫生与预防医学（卫生检验与检疫学）方向硕士研究生，欢迎报考。</li>
+    </ul>
+  </td></tr></tbody></table>
+  <!-- ================= Publications ================= -->
+  <table id="publications" class="page-section"><tbody><tr><td>
+    <h2 class="section-heading">科研成果 Publications</h2>
+    <p class="pub-note">† 共同第一作者　* 通讯作者　期刊论文以中科院分区标注。</p>
+    <div class="tag-filter" id="tagFilter">
+      <button class="tag-btn active" data-tag="all">全部</button>
+      <button class="tag-btn" data-tag="journal">期刊论文</button>
+      <button class="tag-btn" data-tag="book">学术专著</button>
+      <button class="tag-btn" data-tag="conf">会议论文</button>
+      <button class="tag-btn" data-tag="patent">专利</button>
+    </div>
+    <!-- 期刊论文 1 -->
+    <div class="pub-card highlight" data-tags="journal">
+      <div style="flex:1">
+        <p class="pub-title"><a href="https://doi.org/10.1039/d4lc00746h">An integrated microfluidic device for sorting of tumor organoids using image recognition</a></p>
+        <p class="pub-authors"><span class="me">Xingyang Yan</span>, D. Tan, L. Yu, D. Li, Z. Wang, W. Huang, H. Wu*</p>
+        <p class="pub-meta"><span class="venue">Lab on a Chip</span>, 25(1), 41–48 (2024) <span class="badge">第一作者 · 中科院二区 Top</span></p>
+        <p class="pub-links"><a href="https://doi.org/10.1039/d4lc00746h">DOI</a></p>
+      </div>
+    </div>
+    <!-- 期刊论文 2 -->
+    <div class="pub-card highlight" data-tags="journal">
+      <div style="flex:1">
+        <p class="pub-title"><a href="https://doi.org/10.1021/acsptsci.4c00565">A High-Throughput and Logarithm-Serial-Dilution Microfluidic Chip for Combinational Drug Screening on Tumor Organoids</a></p>
+        <p class="pub-authors"><span class="me">Xingyang Yan</span>, D. Tan, L. Yu, D. Li, W. Huang, W. Huang, H. Wu*</p>
+        <p class="pub-meta"><span class="venue">ACS Pharmacology &amp; Translational Science</span>, 7(12), 4135–4143 (2024) <span class="badge">第一作者 · 中科院三区</span></p>
+        <p class="pub-links"><a href="https://doi.org/10.1021/acsptsci.4c00565">DOI</a></p>
+      </div>
+    </div>
+    <!-- 期刊论文 3 -->
+    <div class="pub-card highlight" data-tags="journal">
+      <div style="flex:1">
+        <p class="pub-title"><a href="#">A Directly Moldable, Highly Compact, and Easy-for-Integration 3D Micromixer with Extraordinary Mixing Performance</a></p>
+        <p class="pub-authors">Z. Wang†, <span class="me">Xingyang Yan†</span>, Q. Zhou, Q. Wang, D. Zhao, H. Wu*</p>
+        <p class="pub-meta"><span class="venue">Analytical Chemistry</span>, 95(23), 8850–8858 (2023) <span class="badge">共同第一作者 · 中科院一区 Top</span></p>
+        <p class="pub-links"><a href="#">Paper</a></p>
+      </div>
+    </div>
+    <!-- 期刊论文 4 -->
+    <div class="pub-card" data-tags="journal">
+      <div style="flex:1">
+        <p class="pub-title"><a href="#">Toward understanding the prolonged circulation and elimination mechanism of crosslinked polymeric micelles in zebrafish model</a></p>
+        <p class="pub-authors">J. Tao, Z. Wei, Y. He, <span class="me">Xingyang Yan</span>, S. M. Y. Lee, X. Wang, W. Ge, Y. Zheng*</p>
+        <p class="pub-meta"><span class="venue">Biomaterials</span>, 256, 120180 (2020) <span class="badge">中科院一区 Top</span></p>
+        <p class="pub-links"><a href="#">Paper</a></p>
+      </div>
+    </div>
+    <!-- 学术专著 -->
+    <div class="pub-card" data-tags="book">
+      <div style="flex:1">
+        <p class="pub-title">Microfluidic assembly for biosensing</p>
+        <p class="pub-authors">D. Wang, J. Chen, X. Liu, Q. Wang, L. Li, Z. Wang, <span class="me">Xingyang Yan</span>, D. Tan, H. Wu</p>
+        <p class="pub-meta"><span class="venue">Elsevier</span>, 英文学术专著 (2023)</p>
+      </div>
+    </div>
+    <!-- 会议论文 1 -->
+    <div class="pub-card" data-tags="conf">
+      <div style="flex:1">
+        <p class="pub-title">Plasma Treatment of Polyimide for Surface Improvement</p>
+        <p class="pub-authors"><span class="me">Xingyang Yan</span>#, B. Sun*, T. Wu*</p>
+        <p class="pub-meta"><span class="venue">6th International Multidisciplinary Conference on Optofluidics</span> (2016)</p>
+      </div>
+    </div>
+    <!-- 会议论文 2 -->
+    <div class="pub-card" data-tags="conf">
+      <div style="flex:1">
+        <p class="pub-title">Measurement and Fabrication of 128-channel Flexible Microelectrodes Array</p>
+        <p class="pub-authors">B. Sun#, <span class="me">Xingyang Yan</span>, T. Wu*</p>
+        <p class="pub-meta"><span class="venue">6th International Multidisciplinary Conference on Optofluidics</span> (2016)</p>
+      </div>
+    </div>
+    <!-- 专利 1 -->
+    <div class="pub-card" data-tags="patent">
+      <div style="flex:1">
+        <p class="pub-title">微电极的表面修饰方法</p>
+        <p class="pub-authors">CN105671601B (2015) <span class="badge">排名第 5</span></p>
+      </div>
+    </div>
+    <!-- 专利 2 -->
+    <div class="pub-card" data-tags="patent">
+      <div style="flex:1">
+        <p class="pub-title">一种增强聚酰亚胺基底和导电金属层之间的粘附力的方法</p>
+        <p class="pub-authors">CN106315505A (2016) <span class="badge">排名第 2</span></p>
+      </div>
+    </div>
+  </td></tr></tbody></table>
+  <!-- ================= Education & Experience ================= -->
+  <table id="experience" class="page-section"><tbody><tr><td>
+    <h2 class="section-heading">教育与科研经历 Experience</h2>
+    <div class="exp-item">
+      <div class="exp-year">2020.09 – 2024.10<br>博士</div>
+      <div class="exp-body">
+        <p class="exp-org">香港科技大学 · 化学系</p>
+        <p class="exp-role">导师：吴洪开 教授（<em>Lab on a Chip</em> 副主编）</p>
+        <ul>
+          <li>基于实时图像识别进行类器官分类的自动化微流控平台：通过 Python 实时图像处理，在微流控芯片中识别、分类肿瘤类器官，并由 Arduino 控制芯片实现自动分选。</li>
+          <li>用于高通量药物组合筛选的肿瘤类器官芯片：模拟生理器官环境，具备多药物浓度梯度调节能力，面向临床患者来源的肿瘤类器官开展体外药筛，与深圳市第二人民医院合作推进临床试验。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2017.09 – 2020.07<br>硕士</div>
+      <div class="exp-body">
+        <p class="exp-org">澳门大学 · 中华医药研究院</p>
+        <p class="exp-role">导师：李铭源 教授（现为香港理工大学 Chair Professor）</p>
+        <ul>
+          <li>用于食品安全和人类过敏原分析的自动化微流控平台。</li>
+          <li>用于纳米颗粒药物合成的微流控混合芯片。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2016.09 – 2017.03<br>研究助理</div>
+      <div class="exp-body">
+        <p class="exp-org">南方科技大学 · 电子系</p>
+        <p class="exp-role">导师：于洪宇 教授</p>
+        <ul>
+          <li>第三代半导体器件：氮化镓（GaN）功率器件的制备与测试。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2014 – 2016<br>联合培养</div>
+      <div class="exp-body">
+        <p class="exp-org">中国科学院深圳先进技术研究院 · 医工所</p>
+        <p class="exp-role">导师：吴天准 教授</p>
+        <ul>
+          <li>新一代高分辨率人造视网膜关键技术研发及产业化。</li>
+          <li>人造视网膜植入式微电极阵列的制备与表面改性。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2012.09 – 2016.06<br>本科</div>
+      <div class="exp-body">
+        <p class="exp-org">东北大学 · 生物医学工程</p>
+        <p class="exp-role">工学学士</p>
+      </div>
+    </div>
+  </td></tr></tbody></table>
+  <!-- ================= Research Interests ================= -->
+  <table id="research" class="page-section"><tbody><tr><td>
+    <h2 class="section-heading">主要研究方向 Research</h2>
+    <div class="skill-grid">
+      <div class="skill-card"><h4>微流控芯片 · 生物医学应用</h4><p>肿瘤类器官培养、图像识别分选、药物组合筛选芯片，服务精准医疗。</p></div>
+      <div class="skill-card"><h4>微流控芯片 · 公共卫生应用</h4><p>食品安全检测、人类过敏原分析等自动化检测平台。</p></div>
+      <div class="skill-card"><h4>微纳制造与加工</h4><p>高精度工艺（光刻、刻蚀）与低精度工艺（激光雕刻、3D 打印）。</p></div>
+      <div class="skill-card"><h4>智能检测系统</h4><p>Python 实时图像处理 + Arduino 自动控制，构建“识别—分选—检测”一体化系统。</p></div>
+    </div>
+  </td></tr></tbody></table>
+  <!-- ================= Skills ================= -->
+  <table id="skills" class="page-section"><tbody><tr><td>
+    <h2 class="section-heading">专业技能 Skills</h2>
+    <div class="skill-grid">
+      <div class="skill-card"><h4>可承担课程</h4><p>《分析化学》《仪器分析》等专业课程教学。</p></div>
+      <div class="skill-card"><h4>分析仪器</h4><p>激光共聚焦扫描显微镜 · 流式细胞仪 · 扫描电子显微镜 · 透射电子显微镜。</p></div>
+      <div class="skill-card"><h4>专业软件</h4><p>制图：SolidWorks、AutoCAD　编程：Python、MATLAB　仿真：COMSOL。</p></div>
+      <div class="skill-card"><h4>微纳芯片加工</h4><p>高精度制备（光刻与刻蚀等）· 低精度制备（激光雕刻与 3D 打印等）。</p></div>
+    </div>
+  </td></tr></tbody></table>
+  <!-- ================= Service & Teaching ================= -->
+  <table id="service" class="page-section"><tbody><tr><td>
+    <h2 class="section-heading">教学与招生 Service &amp; Teaching</h2>
+    <ul class="plain-list">
+      <li>硕士研究生导师，招生专业：公共卫生与预防医学（卫生检验与检疫学）。</li>
+      <li>可承担《分析化学》《仪器分析》等专业课程的教学任务。</li>
+      <li>欢迎具有生物医学工程、化学、药学、公共卫生等背景的同学报考与联系。</li>
+    </ul>
+  </td></tr></tbody></table>
+  <!-- ================= Awards ================= -->
+  <table id="awards" class="page-section"><tbody><tr><td>
+    <h2 class="section-heading">获奖与荣誉 Awards</h2>
+    <ul class="plain-list">
+      <li>第 47 届日内瓦国际发明展金奖（2019，唯一学生）</li>
+      <li>Optofluidics 国际会议最佳论文奖（2016）</li>
+      <li>东北大学优秀学生奖学金（2012–2013）</li>
+      <li>中华人民共和国第十二届运动会优秀志愿者</li>
+    </ul>
+  </td></tr></tbody></table>
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <svg class="foot-hill" viewBox="0 0 1440 200" preserveAspectRatio="none" style="height:90px;width:100%;">
+      <path d="M0,200 L0,120 L240,40 L420,110 L640,20 L860,130 L1080,60 L1320,120 L1440,80 L1440,200 Z" fill="#fff" opacity="0.25"></path>
+    </svg>
+    <h2>Keep Exploring</h2>
+    <p class="foot-sub">微流控 · 生物医学 · 公共卫生 —— 做有意义的事，即使它并不容易。</p>
+    <a href="mailto:xyanas@ncst.edu.cn" class="foot-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <span>联系我 / 报考咨询</span>
+    </a>
+    <p class="foot-note">
+      <span>闫醒阳 · 华北理工大学公共卫生学院</span>
+      <span class="divider">|</span>
+      <span>邮箱：xyanas@ncst.edu.cn</span>
+      <span class="divider">|</span>
+      <span>Last updated: 2026-08</span>
+    </p>
+  </footer>
+  <!-- Back to Top -->
+  <button id="backToTop" title="回到顶部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15"/>
     </svg>
   </button>
-
-  <div id="toast" class="toast-message">✅复制完成</div>
-
+  <div id="toast" class="toast-message">✅ 已复制</div>
   <script>
-    // Back to Top
-    (function() {
-      var btn = document.getElementById('backToTop');
-      var sectionNav = document.querySelector('.section-drip-nav');
-      var footer = document.querySelector('.mountain-footer');
-
-      function updateSectionNav() {
-        if (!sectionNav || !footer) return;
-        var footerTop = footer.getBoundingClientRect().top;
-        var navBottom = sectionNav.getBoundingClientRect().bottom;
-        sectionNav.classList.toggle('is-footer-visible', footerTop < navBottom + 28);
-      }
-
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-          btn.classList.add('visible');
-        } else {
-          btn.classList.remove('visible');
-        }
-        updateSectionNav();
+    // ---------- 论文标签筛选 ----------
+    document.getElementById('tagFilter').addEventListener('click', function (e) {
+      var btn = e.target.closest('.tag-btn');
+      if (!btn) return;
+      document.querySelectorAll('.tag-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var tag = btn.dataset.tag;
+      document.querySelectorAll('.pub-card').forEach(function (card) {
+        var tags = card.dataset.tags.split(',');
+        card.style.display = (tag === 'all' || tags.indexOf(tag) !== -1) ? '' : 'none';
       });
-      window.addEventListener('resize', updateSectionNav);
-      updateSectionNav();
-    })();
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    // ---------- 复制文本 + toast ----------
+    function showToast(event) {
+      var toast = document.getElementById('toast');
+      if (event) {
+        var margin = 12;
+        var x = Math.min(Math.max(event.clientX, margin), window.innerWidth - margin);
+        toast.style.left = x + 'px';
+        toast.style.transform = 'translate(-50%, 0)';
+      }
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 1800);
     }
+    function copyText(text, event) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { showToast(event); })
+          .catch(function () { fallbackCopy(text, event); });
+      } else {
+        fallbackCopy(text, event);
+      }
+    }
+    function fallbackCopy(text, event) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast(event); } catch (err) {}
+      document.body.removeChild(ta);
+    }
+    document.getElementById('email-copy').addEventListener('click', function (e) {
+      e.preventDefault();
+      copyText('xyanas@ncst.edu.cn', e);
+    });
+    // ---------- 回到顶部 ----------
+    var backBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 300) { backBtn.classList.add('visible'); }
+      else { backBtn.classList.remove('visible'); }
+    });
+    backBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
